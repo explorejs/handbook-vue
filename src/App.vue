@@ -1,17 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+  data() {
+    return {
+      content: [],
+    };
+  },
+  mounted() {
+    fetch(process.env.VUE_APP_SERVER_BASE_URL)
+      .then((res) => res.json())
+      .then((R) => {
+        console.log(R);
+      });
+  },
+};
 </script>
 
 <style>
