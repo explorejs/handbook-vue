@@ -38,5 +38,11 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "engines": {
+    "node": "14"
+  },
+  "volta": {
+    "node": "14.15.4"
+  }
 }
