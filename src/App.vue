@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <Home msg="Handbook Vue" />
+  <List v-bind:records="records" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Home from "./components/Home.vue";
+import List from "./components/List.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Home,
+    List,
   },
   data() {
     return {
-      content: [],
+      records: [],
     };
   },
   mounted() {
-    fetch(process.env.VUE_APP_SERVER_BASE_URL)
+    fetch(`${process.env.VUE_APP_SERVER_BASE_URL}/mongo`)
       .then((res) => res.json())
       .then((R) => {
-        console.log(R);
+        if (R.data) {
+          this.records = R.data;
+        }
+      })
+      .then(() => {
+        console.log(this.records);
       });
   },
 };
